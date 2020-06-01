@@ -1,18 +1,22 @@
 #include <iostream>
 #include<vector>
+#include<minmax.h>
 
 using namespace std;
 
 
 vector<string> transMatrix(vector<string> vectorA) {
-
+     
+    //vectorA isn't const because in other way operation "+=" for elements won't work
+   
     size_t siz = 0;
     vector<string> vectorB;
-    vectorB.reserve(siz);
-
-    for (size_t i = 0; i < size(vectorA); i++) {
-        if (size(vectorA[i]) > siz) siz = size(vectorA[i]);
+    
+    for (auto& line : vectorA) {
+        siz = max(siz, size(line));
     }
+
+    vectorB.reserve(siz);
 
     for (auto& x : vectorA) {
         size_t curSize = size(x);
@@ -30,8 +34,6 @@ vector<string> transMatrix(vector<string> vectorA) {
         string cur;
 
         for (size_t j = 0; j < size(vectorA) ;j++) {
-
-          
 
             cur += vectorA[j][i];
             
